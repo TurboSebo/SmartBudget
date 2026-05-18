@@ -9,17 +9,29 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Swipe
+import androidx.compose.runtime.rememberCoroutineScope
 
 @Composable
-fun Sidebar() {
+fun Sidebar(
+    drawerState: DrawerState,
+    content: @Composable () -> Unit //przyjmowanie zawartości ekranu aby móc wyjeżdzać na nią z boku
+) {
+
     ModalNavigationDrawer(
+        drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
+                Spacer(modifier = Modifier.width(12.dp))
+                //Text("Menu", style = MaterialTheme.typography.titleMedium)
+
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceAround,
                 ) {
                     Surface(
                         modifier = Modifier.size(40.dp),
@@ -36,8 +48,23 @@ fun Sidebar() {
                             )
                         }
                     }
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Text("Menu", style = MaterialTheme.typography.titleMedium)
+                    Surface(
+                        modifier = Modifier.size(40.dp),
+                        shape = RoundedCornerShape(8.dp),
+                        color = MaterialTheme.colorScheme.secondaryContainer,
+                    ){
+                        IconButton(
+                            onClick = { /*TODO*/ },
+                            modifier = Modifier.fillMaxSize(),
+                        ){
+                            Icon(
+                                imageVector = Icons.Filled.Close,
+                                contentDescription = "Zamknij",
+                            )
+                        }
+                    }
+
+
                 }
 
                 HorizontalDivider()
@@ -55,6 +82,7 @@ fun Sidebar() {
             }
         },
     ) {
+        content()
 
     }
 }
