@@ -1,8 +1,16 @@
 package org.us.smartbudget.model
 
+enum class TransactionType {
+    INCOME,
+    EXPENSE,
+}
+
 data class Transaction(
     val id: Long,
-    var title: String? = "transaction title",
-    var amount: Double? = null,
-    var date: Long? = null,
+    val title: String? = "transaction title",
+    val amount: Double? = null,
+    val type: TransactionType,
+    val category: String? = null,
+    val dateEpoch: Long? = null,
+
 )
