@@ -16,6 +16,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 @Composable
 fun Sidebar(
     drawerState: DrawerState,
+    onCloseClick: () -> Unit,
     content: @Composable () -> Unit //przyjmowanie zawartości ekranu aby móc wyjeżdzać na nią z boku
 ) {
 
@@ -54,7 +55,7 @@ fun Sidebar(
                         color = MaterialTheme.colorScheme.secondaryContainer,
                     ){
                         IconButton(
-                            onClick = { /*TODO*/ },
+                            onClick = { onCloseClick() },
                             modifier = Modifier.fillMaxSize(),
                         ){
                             Icon(
