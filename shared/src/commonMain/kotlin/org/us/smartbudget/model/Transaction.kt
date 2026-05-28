@@ -8,7 +8,7 @@ enum class TransactionType {
 data class Transaction(
     val id: Long,
     val title: String? = "transaction title",
-    val amount: Double? = null,
+    val amount: Double? = 0.0,
     val type: TransactionType,
     val category: String? = null,
     val dateEpoch: Long? = null,
