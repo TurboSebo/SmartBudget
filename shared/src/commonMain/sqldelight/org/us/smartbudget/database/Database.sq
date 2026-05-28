@@ -1,0 +1,17 @@
+CREATE TABLE transactionEntity(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    amount REAL,
+    type TEXT NOT NULL,
+    category TEXT,
+    dateEpoch INTEGER
+);
+
+-- Funkcja do dodawania wpisu
+insertTransaction:
+INSERT INTO transactionEntity(title, amount, type, category, dateEpoch)
+VALUES (?, ?, ?, ?, ?);
+
+-- Funkcja do pobierania całej historii
+selectAllTransactions:
+SELECT * FROM transactionEntity;
