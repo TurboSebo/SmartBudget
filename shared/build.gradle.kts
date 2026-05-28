@@ -34,6 +34,7 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
+            implementation("app.cash.sqldelight:android-driver:2.0.1")
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -54,6 +55,10 @@ kotlin {
         // JVM (desktop) driver for SQLDelight - zapis na dysku
         jvmMain.dependencies {
             implementation("app.cash.sqldelight:sqlite-driver:2.0.1")
+        }
+        iosMain.dependencies {
+            // Sterownik zapisu bazy danych dla systemu iOS
+            implementation("app.cash.sqldelight:native-driver:2.0.1")
         }
     }
 }

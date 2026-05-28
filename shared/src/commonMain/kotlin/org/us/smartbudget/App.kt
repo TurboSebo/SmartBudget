@@ -16,12 +16,17 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
 import org.us.smartbudget.ui.DashboardScreen
 import org.us.smartbudget.ui.Sidebar
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import org.us.smartbudget.ui.AddTransactionDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,6 +35,8 @@ fun App() {
     MaterialTheme {
         val drawerState = rememberDrawerState(DrawerValue.Closed)
         val scope = rememberCoroutineScope()
+
+        var showAddDialog by remember { mutableStateOf(false) }
 
         Sidebar(
             drawerState = drawerState,
@@ -47,7 +54,7 @@ fun App() {
                     )
                 },
                 floatingActionButton = {
-                    FloatingActionButton(onClick = { /* TODO: Otwórz modal dodawania */ }) {
+                    FloatingActionButton(onClick = { showAddDialog = true }) {
                         Icon(Icons.Filled.Add, contentDescription = "Dodaj wydatek")
                     }
                 },
@@ -57,5 +64,16 @@ fun App() {
                 }
             }
         }
+
+        if (showAddDialog) {
+            AddTransactionDialog(
+                onDismiss = { showAddDialog = false },
+                onSave = { title, amount, type ->
+                    println("Saving $title to $amount")
+                    showAddDialog = false
+                }
+            )
+        }
+
     }
 }
