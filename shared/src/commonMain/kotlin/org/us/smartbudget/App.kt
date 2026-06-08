@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
 import org.us.smartbudget.ui.DashboardScreen
 import org.us.smartbudget.ui.Sidebar
+import org.us.smartbudget.ui.SmartBudgetViewModel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import org.us.smartbudget.ui.AddTransactionDialog
@@ -37,6 +38,8 @@ fun App() {
         val scope = rememberCoroutineScope()
 
         var showAddDialog by remember { mutableStateOf(false) }
+
+        val viewModel = remember { SmartBudgetViewModel() }
 
         Sidebar(
             drawerState = drawerState,
@@ -60,7 +63,7 @@ fun App() {
                 },
             ) { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
-                    DashboardScreen();
+                    DashboardScreen(viewModel = viewModel)
                 }
             }
         }
@@ -69,7 +72,7 @@ fun App() {
             AddTransactionDialog(
                 onDismiss = { showAddDialog = false },
                 onSave = { title, amount, type ->
-                    println("Saving $title to $amount")
+                    viewModel.addTransaction(title, amount, type)
                     showAddDialog = false
                 }
             )
