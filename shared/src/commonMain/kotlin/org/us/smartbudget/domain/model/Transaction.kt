@@ -1,4 +1,4 @@
-package org.us.smartbudget.model
+package org.us.smartbudget.domain.model
 
 enum class TransactionType {
     INCOME,

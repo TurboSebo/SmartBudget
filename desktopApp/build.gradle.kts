@@ -11,6 +11,7 @@ dependencies {
 
     implementation(compose.desktop.currentOs)
     implementation(libs.kotlinx.coroutinesSwing)
+    implementation("app.cash.sqldelight:sqlite-driver:2.0.1")
 
     implementation(libs.compose.uiToolingPreview)
 }
