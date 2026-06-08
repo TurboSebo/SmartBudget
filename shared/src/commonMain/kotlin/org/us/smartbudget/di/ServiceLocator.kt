@@ -1,9 +1,8 @@
 package org.us.smartbudget.di
 
-import org.us.smartbudget.domain.repository.TransactionRepository
-import org.us.smartbudget.domain.repository.TransactionRepositoryImpl
+import org.us.smartbudget.data.repository.TransactionRepository
+import org.us.smartbudget.data.repository.TransactionRepositoryImpl
 import org.us.smartbudget.database.SmartBudgetDatabase
-import org.us.smartbudget.getPlatform
 
 object ServiceLocator {
     private var database: SmartBudgetDatabase? = null

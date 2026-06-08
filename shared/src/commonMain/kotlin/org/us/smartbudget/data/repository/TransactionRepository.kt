@@ -1,8 +1,8 @@
-package org.us.smartbudget.domain.repository
+package org.us.smartbudget.data.repository
 
 import kotlinx.coroutines.flow.Flow
-import org.us.smartbudget.domain.model.Transaction
-import org.us.smartbudget.domain.model.TransactionType
+import org.us.smartbudget.data.model.Transaction
+import org.us.smartbudget.data.model.TransactionType
 
 interface TransactionRepository {
     suspend fun insertTransaction(title: String, amount: Double, type: TransactionType)

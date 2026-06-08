@@ -1,12 +1,12 @@
-// Ścieżka: org/us/smartbudget/domain/repository/TransactionRepositoryImpl.kt
-package org.us.smartbudget.domain.repository
+// Ścieżka: org/us/smartbudget/data/repository/TransactionRepositoryImpl.kt
+package org.us.smartbudget.data.repository
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import org.us.smartbudget.domain.model.Transaction
-import org.us.smartbudget.domain.model.TransactionType
+import org.us.smartbudget.data.model.Transaction
+import org.us.smartbudget.data.model.TransactionType
 import org.us.smartbudget.database.SmartBudgetDatabase // Wygenerowana klasa SQLDelight
 
 class TransactionRepositoryImpl(

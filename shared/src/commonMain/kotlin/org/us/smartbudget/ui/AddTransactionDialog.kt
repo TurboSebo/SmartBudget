@@ -7,7 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import org.us.smartbudget.domain.model.TransactionType
+import org.us.smartbudget.data.model.TransactionType
 
 @Composable
 fun AddTransactionDialog(
