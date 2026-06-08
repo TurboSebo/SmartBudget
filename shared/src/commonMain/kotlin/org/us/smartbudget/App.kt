@@ -28,6 +28,7 @@ import org.us.smartbudget.ui.SmartBudgetViewModel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import org.us.smartbudget.ui.AddTransactionDialog
+import org.us.smartbudget.ui.TransactionHistoryScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,12 +39,15 @@ fun App() {
         val scope = rememberCoroutineScope()
 
         var showAddDialog by remember { mutableStateOf(false) }
+        var currentScreen by remember { mutableStateOf<Screen>(Screen.Dashboard) }
 
         val viewModel = remember { SmartBudgetViewModel() }
 
         Sidebar(
             drawerState = drawerState,
             onCloseClick = { scope.launch { drawerState.close() } },
+            onDashboardClick = { currentScreen = Screen.Dashboard },
+            onHistoryClick = { currentScreen = Screen.History },
         ) {
             Scaffold(
                 topBar = {
@@ -63,7 +67,10 @@ fun App() {
                 },
             ) { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
-                    DashboardScreen(viewModel = viewModel)
+                    when (currentScreen) {
+                        Screen.Dashboard -> DashboardScreen(viewModel = viewModel)
+                        Screen.History -> TransactionHistoryScreen(viewModel = viewModel)
+                    }
                 }
             }
         }
@@ -79,4 +86,9 @@ fun App() {
         }
 
     }
+}
+
+enum class Screen {
+    Dashboard,
+    History,
 }

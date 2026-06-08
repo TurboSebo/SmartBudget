@@ -12,13 +12,18 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Swipe
 import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun Sidebar(
     drawerState: DrawerState,
     onCloseClick: () -> Unit,
+    onDashboardClick: () -> Unit,
+    onHistoryClick: () -> Unit,
     content: @Composable () -> Unit //przyjmowanie zawartości ekranu aby móc wyjeżdzać na nią z boku
 ) {
+    // Potrzebny scope do wywołań suspend (np. drawerState.close())
+    val scope = rememberCoroutineScope()
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -72,12 +77,18 @@ fun Sidebar(
                 NavigationDrawerItem(
                     label = { Text(text = "Pulpit") },
                     selected = false,
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        onDashboardClick()
+                        scope.launch { drawerState.close() }
+                    },
                 )
                 NavigationDrawerItem(
                     label = { Text(text = "Historia") },
                     selected = false,
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        onHistoryClick()
+                        scope.launch { drawerState.close() }
+                    },
                 )
 
             }

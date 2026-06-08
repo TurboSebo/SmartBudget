@@ -40,4 +40,10 @@ class SmartBudgetViewModel {
             repository.insertTransaction(title, amount, type)
         }
     }
+
+    fun deleteTransaction(id: Long) {
+        viewModelScope.launch {
+            repository.deleteTransaction(id)
+        }
+    }
 }

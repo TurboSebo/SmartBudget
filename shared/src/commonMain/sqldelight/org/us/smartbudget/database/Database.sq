@@ -15,3 +15,8 @@ VALUES (?, ?, ?, ?, ?);
 -- Funkcja do pobierania całej historii
 selectAllTransactions:
 SELECT * FROM transactionEntity;
+
+-- Funkcja do usuwania transakcji
+deleteTransaction:
+DELETE FROM transactionEntity WHERE id = ?;
+

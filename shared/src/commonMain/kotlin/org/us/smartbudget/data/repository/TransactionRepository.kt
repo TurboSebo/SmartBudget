@@ -7,4 +7,5 @@ import org.us.smartbudget.data.model.TransactionType
 interface TransactionRepository {
     suspend fun insertTransaction(title: String, amount: Double, type: TransactionType)
     fun getAllTransactions(): Flow<List<Transaction>>
+    suspend fun deleteTransaction(id: Long)
 }

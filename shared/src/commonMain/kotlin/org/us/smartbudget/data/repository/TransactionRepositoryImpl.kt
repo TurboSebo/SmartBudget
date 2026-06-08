@@ -31,6 +31,10 @@ class TransactionRepositoryImpl(
             .mapToList(Dispatchers.Default)
     }
 
+    override suspend fun deleteTransaction(id: Long) {
+        queries.deleteTransaction(id)
+    }
+
     // Funkcja mapująca model bazodanowy (z SQLDelight) na model domenowy (Twój data class)
     private fun mapToDomainModel(
         id: Long,
